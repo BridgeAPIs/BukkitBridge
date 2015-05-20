@@ -1,4 +1,6 @@
 language: java
-before_script:
+install:
+  - wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  - java -jar BuildTools.jar
   - cd PermissionsAPI
   - mvn install
