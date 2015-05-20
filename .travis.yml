@@ -4,5 +4,7 @@ install:
   - mvn org.apache.maven.plugins:maven-install-plugin:2.3.1:install-file -Dfile=spigot.jar -DgroupId=org.spigotmc -DartifactId=spigot -Dversion=1.8.3-R0.1-SNAPSHOT -Dpackaging=jar
   - cd PermissionsAPI
   - mvn install
+  - cd ..
+  - mvn install
 jdk:
   - oraclejdk8
