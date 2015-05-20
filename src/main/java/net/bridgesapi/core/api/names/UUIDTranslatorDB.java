@@ -24,6 +24,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
 
+/**
+ * Original author, as a BungeeCord dependent API : Tux (RedisBungee)
+ * Updated by zyuiop
+ */
 public final class UUIDTranslatorDB implements UUIDTranslator {
     private final Pattern UUID_PATTERN = Pattern.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}");
     private final Pattern MOJANGIAN_UUID_PATTERN = Pattern.compile("[a-fA-F0-9]{32}");

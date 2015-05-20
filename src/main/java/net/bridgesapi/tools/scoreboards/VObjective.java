@@ -16,6 +16,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * Created by Geekpower14 on 01/01/2015.
  */
+
+// TODO : Rewrite this class (Not owned)
 public class VObjective {
 
     protected String name;

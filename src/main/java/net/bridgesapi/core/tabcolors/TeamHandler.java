@@ -19,6 +19,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * Created by Geekpower14 on 11/01/2015.
  */
+
+// TODO : Rewrite this class (Reason : illegal use)
 public class TeamHandler {
 
     public ConcurrentLinkedQueue<VTeam> teams = new ConcurrentLinkedQueue<>();

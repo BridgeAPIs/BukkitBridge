@@ -8,6 +8,8 @@ import java.util.HashMap;
 /**
  * Created by Geekpower14 on 02/01/2015.
  */
+
+// TODO : Rewrite this class (Not owned)
 public class ObjectiveSign extends VObjective{
 
     public HashMap<Integer, String> lines = new HashMap<>();
