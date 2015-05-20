@@ -1,7 +1,7 @@
 language: java
 install:
-  - mkdir BuildTools
-  - cd BuildTools
+  - wget http://spigotmc.fr/download/spigot/1.8.X/Spigot-1.8.3.jar -O spigot.jar
+  - mvn org.apache.maven.plugins:maven-install-plugin:2.3.1:install-file -Dfile=spigot.jar -DgroupId=org.spigotmc -DartifactId=spigot -Dversion=1.8.3-R0.1-SNAPSHOT
   - wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
   - java -jar BuildTools.jar >> /dev/null
   - cd ../PermissionsAPI
