@@ -1,7 +1,7 @@
 BukkitBridge
 ============
 
-!(https://travis-ci.org/BridgeAPIs/BukkitBridge.svg?branch=master)
+![BuildState](https://travis-ci.org/BridgeAPIs/BukkitBridge.svg?branch=master)
 
 API efficace pour gérer du cross servers
 
