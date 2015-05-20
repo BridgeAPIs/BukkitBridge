@@ -1,0 +1,14 @@
+# False : no database required (limited features)
+database: true
+# Nature disabled
+disable-nature: false
+# Use Permissions to provide groups colors in tab
+tab-colors: true
+# BungeeCord server name
+bungeename:
+
+database:
+  sentinels: [] # Sentinels IP:PORT
+  auth: "" # Authentification
+  mastername: ""
+  cachemastername: ""
