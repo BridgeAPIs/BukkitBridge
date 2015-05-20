@@ -1,3 +1,3 @@
 [submodule "PermissionsAPI"]
 	path = PermissionsAPI
-	url = /home/zyuiop/JavaPublic/CrossPermissionsAPI/.git/
+	url = https://github.com/BridgeAPIs/CrossPermissionsAPI.git
