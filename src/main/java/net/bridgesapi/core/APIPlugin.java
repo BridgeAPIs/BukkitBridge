@@ -45,6 +45,7 @@ public class APIPlugin extends JavaPlugin implements Listener {
 	protected String joinPermission = null;
 	protected TasksExecutor executor;
 	protected DebugListener debugListener;
+	private boolean ipCheck = true;
 
 	public void onEnable() {
 		instance = this;
@@ -58,6 +59,7 @@ public class APIPlugin extends JavaPlugin implements Listener {
 		this.saveDefaultConfig();
 		configuration = this.getConfig();
 		databaseEnabled = configuration.getBoolean("database", true);
+		ipCheck = configuration.getBoolean("ip-whitelist", true);
 		executor = new TasksExecutor();
 		new Thread(executor, "Executor").start();
 
@@ -305,7 +307,7 @@ public class APIPlugin extends JavaPlugin implements Listener {
 		}
 
 		String ip = event.getRealAddress().getHostAddress();
-		if (!databaseEnabled) {
+		if (!databaseEnabled || !ipCheck) {
 			Bukkit.getLogger().info("[WARNING] Allowing connexion without check from IP "+ip);
 			return;
 		}

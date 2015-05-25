@@ -7,8 +7,16 @@ tab-colors: true
 # BungeeCord server name
 bungeename:
 
+# Only sentinel databases for the moment
+# Porting to single redis will be done one day...
 database:
   sentinels: [] # Sentinels IP:PORT
   auth: "" # Authentification
   mastername: ""
   cachemastername: ""
+
+# Checks the incoming connexion IPs and refuse them if they don't come from a proxy
+# Disable if you wish to use without any proxy server
+ip-whitelist: true
+
+
