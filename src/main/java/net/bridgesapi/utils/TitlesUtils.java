@@ -1,16 +1,72 @@
-package net.bridgesapi.tools;
+package net.bridgesapi.utils;
 
-import net.minecraft.server.v1_8_R2.*;
+import net.minecraft.server.v1_8_R2.IChatBaseComponent;
+import net.minecraft.server.v1_8_R2.PacketPlayOutPlayerListHeaderFooter;
+import net.minecraft.server.v1_8_R2.PacketPlayOutTitle;
+import net.minecraft.server.v1_8_R2.PlayerConnection;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
 
+/**
+ * Created by Mac' on 26/05/2015.
+ */
+public class TitlesUtils {
 
-public class Titles
-{
-    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle)
+
+    private static int DEFAULT_FADE_OUT = 20;
+    private static int DEFAULT_STAY = 20;
+    private static int DEFAULT_FADE_IN = 20;
+
+
+    /**
+     * Render header and footer on all player's screen
+     * @param header header that will be render
+     * @param footer footer that willl be render
+     */
+    public static void sendHeaderAndFooterToAllPlayer(String header, String footer){
+        for(Player p : Bukkit.getOnlinePlayers()){
+            sendTabHeaderAndFooterToPlayer(p, header, footer);
+        }
+    }
+
+
+    /**
+     * Render title on all player screen with default fadeout, stay and fadein
+     * @param title title that will be render on player's screen
+     * @param subtitle sub-tittle that will be render on player's screen
+     */
+    public static void sendTitleToAllPlayer(String title, String subtitle) {
+        for(Player p : Bukkit.getOnlinePlayers()) {
+            sendTitleToPlayer(p, title, subtitle);
+        }
+    }
+
+
+    /**
+     * Render title on player screen with default fadeout, stay and fadein
+     * @param player player will receive title
+     * @param title title that will be render on player's screen
+     * @param subtitle sub-tittle that will be render on player's screen
+     */
+    public static void sendTitleToPlayer(Player player, String title, String subtitle){
+        sendTitleToPlayer(player, DEFAULT_FADE_IN, DEFAULT_STAY, DEFAULT_FADE_OUT, title, subtitle);
+    }
+
+
+    /**
+     * Render title on player screen
+     * @param player player will receive title
+     * @param fadeIn time in tick that make text to appear
+     * @param stay time in tick that text stay on player's screen
+     * @param fadeOut time in tick that make text to disappear
+     * @param title title that will be render on player's screen
+     * @param subtitle sub-tittle that will be render on player's screen
+     */
+    public static void sendTitleToPlayer(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle)
     {
         PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
 
@@ -36,7 +92,13 @@ public class Titles
         }
     }
 
-    public static void sendTabTitle(Player player, String header, String footer)
+    /**
+     * Render header and footer on the player's tablist
+     * @param player player who receive header & footer
+     * @param header header that will be render
+     * @param footer footer that willl be render
+     */
+    public static void sendTabHeaderAndFooterToPlayer(Player player, String header, String footer)
     {
         if (header == null) header = "";
         header = ChatColor.translateAlternateColorCodes('&', header);

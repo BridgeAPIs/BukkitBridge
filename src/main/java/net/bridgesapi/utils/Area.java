@@ -1,6 +1,5 @@
 package net.bridgesapi.utils;
 
-import net.bridgesapi.tools.LocationUtils;
 import org.bukkit.Location;
 
 public class Area
@@ -16,6 +15,25 @@ public class Area
     public Area(Location first, Location second) {
         build(first, second);
     }
+
+    /**
+     * Create Area from one string (use this for loading Area from a config file)
+     * @param value config value
+     */
+    public Area(String value){
+        String[] locationStrings = value.split(":");
+        build(ConfigUtils.stringToLocation(locationStrings[0]), ConfigUtils.stringToLocation(locationStrings[1]));
+    }
+
+    /**
+     * Create Area from two string which gonna be sereliaze in Location
+     * @param first First string
+     * @param second Second string
+     */
+    public Area(String first, String second) {
+        build(ConfigUtils.stringToLocation(first), ConfigUtils.stringToLocation(second));
+    }
+
 
 
     /**
@@ -67,13 +85,21 @@ public class Area
         tempmax.setWorld(first.getWorld());
     }
 
+
     /**
-     * Create Area from two string which gonna be sereliaze in Location
-     * @param first First string
-     * @param second Second string
+     * Get string of area for save it in a config for example
+     * @return String to save
      */
-    public Area(String first, String second) {
-        build(LocationUtils.str2loc(first), LocationUtils.str2loc(second));
+    public String toString() {
+        return ConfigUtils.locationToString(min) + ":" + ConfigUtils.locationToString(max);
+    }
+
+    /**
+     * Get a copy of Area
+     * @return copied Area
+     */
+    public Area copy() {
+        return new Area(min, max);
     }
 
     /**
