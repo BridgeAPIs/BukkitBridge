@@ -2,6 +2,7 @@ package net.bridgesapi.core.listeners;
 
 import net.bridgesapi.api.BukkitBridge;
 import net.bridgesapi.core.APIPlugin;
+import net.bridgesapi.core.i18n.I18n;
 import net.bridgesapi.core.tabcolors.TeamManager;
 import net.zyuiop.crosspermissions.api.permissions.PermissionUser;
 import org.bukkit.Bukkit;
@@ -51,7 +52,7 @@ public class TabsColorsListener extends APIListener {
 				final String displayn = replaceColors(display + "" + prefix) + p.getName();
 				p.setDisplayName(displayn);
 			} else {
-				event.getPlayer().sendMessage(ChatColor.GOLD + "Base de données désactivée. Fonctionnalités limitées.");
+				event.getPlayer().sendMessage(I18n.getError("database_disabled"));
 			}
 		});
 
