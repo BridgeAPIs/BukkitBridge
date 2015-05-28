@@ -1,7 +1,7 @@
 name: BukkitBridge
 main: net.bridgesapi.core.APIPlugin
-version: gitcommit
-authors: [zyuiop]
+version: 1.0.1a
+authors: [zyuiop, ThisIsMac]
 commands:
    coins:
      description: Commandes relatives aux coins
