@@ -1,5 +1,6 @@
 package net.bridgesapi.core.commands;
 
+import net.bridgesapi.core.i18n.I18n;
 import net.md_5.bungee.api.ChatColor;
 import net.minecraft.server.v1_8_R2.MinecraftServer;
 import net.bridgesapi.core.APIPlugin;
@@ -22,14 +23,14 @@ public class CommandLag extends AbstractCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, String label, String[] arguments) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(ChatColor.GOLD + "Latence : 0.0 ms");
+			sender.sendMessage(ChatColor.RED + "This command can only be used by players.");
 			return true;
 		}
 
 		Player player = (Player) sender;
 		int latency = ((CraftPlayer) player).getHandle().ping;
 
-		StringBuilder tps = new StringBuilder(org.bukkit.ChatColor.GOLD + "TPS des dernières 1m, 5m, 15m: ");
+		StringBuilder tps = new StringBuilder(I18n.getCommandMessage("lag", "tps"));
 		double[] tab;
 		int length = (tab = MinecraftServer.getServer().recentTps).length;
 
@@ -41,13 +42,13 @@ public class CommandLag extends AbstractCommand {
 
 		String server = APIPlugin.getInstance().getServerName();
 
-		player.sendMessage(org.bukkit.ChatColor.YELLOW + "------[ Informations de Lag ]------");
+		player.sendMessage(I18n.getCommandMessage("lag", "head"));
 		player.sendMessage(ChatColor.GOLD + " ");
-		player.sendMessage(ChatColor.YELLOW + "Serveur : " + ChatColor.AQUA + server);
+		player.sendMessage(I18n.getCommandMessage("lag", "server").replace("%SERVER%", server));
 		player.sendMessage(ChatColor.GOLD + " ");
-		player.sendMessage(ChatColor.YELLOW + "Latence (ping) : " + ChatColor.AQUA + formatLag(latency) + " ms");
+		player.sendMessage(I18n.getCommandMessage("lag", "lag").replace("%PING%", formatLag(latency)));
 		player.sendMessage(ChatColor.GOLD + " ");
-		player.sendMessage(ChatColor.YELLOW + "Ticks par seconde (20 = Parfait)");
+		player.sendMessage(I18n.getCommandMessage("lag", "tps_line"));
 		player.sendMessage(tps.toString());
 
 		return true;

@@ -1,6 +1,7 @@
 package net.bridgesapi.core.commands;
 
 import net.bridgesapi.core.APIPlugin;
+import net.bridgesapi.core.i18n.I18n;
 import net.zyuiop.crosspermissions.api.PermissionsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -25,7 +26,7 @@ public class CommandRefresh implements CommandExecutor {
             @Override
             public void run() {
                 api.getManager().refresh();
-                commandSender.sendMessage(ChatColor.GREEN + "Les permissions locales ont été raffraichies !");
+                commandSender.sendMessage(I18n.getCommandMessage("refresh", "cache_refreshed"));
             }
         });
         return true;

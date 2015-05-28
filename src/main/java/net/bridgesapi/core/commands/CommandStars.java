@@ -3,6 +3,7 @@ package net.bridgesapi.core.commands;
 import net.bridgesapi.api.BukkitBridge;
 import net.bridgesapi.api.player.PlayerData;
 import net.bridgesapi.core.APIPlugin;
+import net.bridgesapi.core.i18n.I18n;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -30,13 +31,13 @@ public class CommandStars extends AbstractCommand {
 					Player player = (Player) sender;
 					PlayerData data = BukkitBridge.get().getPlayerManager().getPlayerData(player.getUniqueId());
 					if (data != null) {
-						player.sendMessage(ChatColor.GOLD + "Vous avez actuellement " + ChatColor.GREEN + data.getStars() + " Étoiles");
+						player.sendMessage(I18n.getCommandMessage("stars", "account").replace("%STARS%", data.getStars() + ""));
 					} else {
-						player.sendMessage(ChatColor.RED + "Une erreur inconnue s'est produite.");
+						player.sendMessage(ChatColor.RED + I18n.getError("unknown"));
 					}
 				}, "CommandStarsGet").start();
 			} else {
-				sender.sendMessage(ChatColor.RED + "Une console ne jouit pas de compte bancaire.");
+				sender.sendMessage(ChatColor.RED + "Command reserved to players.");
 			}
 
 			return true;
@@ -56,9 +57,9 @@ public class CommandStars extends AbstractCommand {
 				PlayerData data = BukkitBridge.get().getPlayerManager().getPlayerData(playerId);
 
 				if (data != null) {
-					sender.sendMessage(ChatColor.GOLD + "Le joueur a " + ChatColor.GREEN + data.getStars() + " Étoiles");
+					sender.sendMessage(I18n.getCommandMessage("stars", "account_other").replace("%PLAYER%", playerName).replace("%STARS%", "" + data.getStars()));
 				} else {
-					sender.sendMessage(ChatColor.RED + "Une erreur inconnue s'est produite.");
+					sender.sendMessage(ChatColor.RED + I18n.getError("unknown"));
 				}
 			}, "CommandStarsGetOther").start();
 
@@ -78,9 +79,9 @@ public class CommandStars extends AbstractCommand {
 
 				try {
 					long amt = Long.valueOf(amount);
-					data.creditStars(amt, "Cadeau du staff :p", false, (newAmount, difference, error) -> sender.sendMessage(ChatColor.GOLD + "Le joueur a bien reçu " + difference + " étoiles. Il en a maintenant " + newAmount));
+					data.creditStars(amt, I18n.getCommandMessage("stars", "credit_player_message"), false, (newAmount, difference, error) -> sender.sendMessage(I18n.getCommandMessage("stars", "credit").replace("%PLAYER%", playerName).replace("%AMOUNT%", difference + "").replace("%STARS%", newAmount + "")));
 				} catch (Exception e) {
-					sender.sendMessage(ChatColor.RED + "Format de nombre non valide.");
+					sender.sendMessage(ChatColor.RED + I18n.getError("number_format"));
 				}
 			}, "CommandStarsCredit").start();
 
@@ -101,9 +102,9 @@ public class CommandStars extends AbstractCommand {
 
 				try {
 					long amt = Long.valueOf(amount);
-					data.withdrawStars(amt, (newAmount, difference, error) -> sender.sendMessage(ChatColor.GOLD + "Le joueur a bien perdu " + difference + " étoiles. Il en a maintenant " + newAmount));
+					data.withdrawStars(amt, (newAmount, difference, error) -> sender.sendMessage(I18n.getCommandMessage("stars", "withdraw").replace("%PLAYER%", playerName).replace("%AMOUNT%", difference + "").replace("%STARS%", newAmount + "")));
 				} catch (Exception e) {
-					sender.sendMessage(ChatColor.RED + "Format de nombre non valide.");
+					sender.sendMessage(ChatColor.RED + I18n.getError("number_format"));
 				}
 			}, "CommandStarsWithdraw").start();
 

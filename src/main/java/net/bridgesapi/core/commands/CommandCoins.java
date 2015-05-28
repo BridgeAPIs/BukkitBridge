@@ -3,6 +3,7 @@ package net.bridgesapi.core.commands;
 import net.bridgesapi.api.BukkitBridge;
 import net.bridgesapi.api.player.PlayerData;
 import net.bridgesapi.core.APIPlugin;
+import net.bridgesapi.core.i18n.I18n;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -30,13 +31,13 @@ public class CommandCoins extends AbstractCommand {
 					Player player = (Player) sender;
 					PlayerData data = BukkitBridge.get().getPlayerManager().getPlayerData(player.getUniqueId());
 					if (data != null) {
-						player.sendMessage(ChatColor.GOLD + "Vous avez actuellement " + ChatColor.GREEN + data.getCoins() + " Coins");
+						player.sendMessage(I18n.getCommandMessage("coins", "account").replace("%COINS%", data.getCoins() + ""));
 					} else {
-						player.sendMessage(ChatColor.RED + "Une erreur inconnue s'est produite.");
+						player.sendMessage(ChatColor.RED + I18n.getError("unknown"));
 					}
 				}, "CommandCoinsGet").start();
 			} else {
-				sender.sendMessage(ChatColor.RED + "Une console ne jouit pas de compte bancaire.");
+				sender.sendMessage(ChatColor.RED + I18n.getCommandMessage("coins", "console_error"));
 			}
 
 			return true;
@@ -56,9 +57,9 @@ public class CommandCoins extends AbstractCommand {
 				PlayerData data = BukkitBridge.get().getPlayerManager().getPlayerData(playerId);
 
 				if (data != null) {
-					sender.sendMessage(ChatColor.GOLD + "Le joueur a " + ChatColor.GREEN + data.getCoins() + " Coins");
+					sender.sendMessage(I18n.getCommandMessage("coins", "account_other").replace("%PLAYER%", playerName).replace("%COINS%", "" + data.getCoins()));
 				} else {
-					sender.sendMessage(ChatColor.RED + "Une erreur inconnue s'est produite.");
+					sender.sendMessage(ChatColor.RED + I18n.getError("unknown"));
 				}
 			}, "CommandCoinsGetOther").start();
 
@@ -78,9 +79,9 @@ public class CommandCoins extends AbstractCommand {
 
 				try {
 					long amt = Long.valueOf(amount);
-					data.creditCoins(amt, "Cadeau du staff :p", false, (newAmount, difference, error) -> sender.sendMessage(ChatColor.GOLD + "Le joueur a bien reçu " + difference + " coins. Il en a maintenant "+ newAmount));
+					data.creditCoins(amt, I18n.getCommandMessage("coins", "credit_player_message"), false, (newAmount, difference, error) -> sender.sendMessage(I18n.getCommandMessage("coins", "credit").replace("%PLAYER%", playerName).replace("%AMOUNT%", difference + "").replace("%COINS%", newAmount + "")));
 				} catch (Exception e) {
-					sender.sendMessage(ChatColor.RED + "Format de nombre non valide.");
+					sender.sendMessage(ChatColor.RED + I18n.getError("number_format"));
 				}
 			}, "CommandCoinsCredit").start();
 
@@ -101,9 +102,9 @@ public class CommandCoins extends AbstractCommand {
 
 				try {
 					long amt = Long.valueOf(amount);
-					data.withdrawCoins(amt, (newAmount, difference, error) -> sender.sendMessage(ChatColor.GOLD + "Le joueur a bien perdu " + difference + " coins. Il en a maintenant "+ newAmount));
+					data.withdrawCoins(amt, (newAmount, difference, error) -> sender.sendMessage(I18n.getCommandMessage("coins", "withdraw").replace("%PLAYER%", playerName).replace("%AMOUNT%", difference + "").replace("%COINS%", newAmount + "")));
 				} catch (Exception e) {
-					sender.sendMessage(ChatColor.RED + "Format de nombre non valide.");
+					sender.sendMessage(ChatColor.RED + I18n.getError("number_format"));
 				}
 			}, "CommandCoinsWithdraw").start();
 

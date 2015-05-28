@@ -1,0 +1,31 @@
+
+errors:
+  number_format: "Format de nombre non valide."
+  no_permission: "Vous n'avez pas le droit de faire ça."
+  unknown: "Une erreur inconnue s'est produite."
+
+commands:
+  coins:
+    console_error: "Une console ne jouit pas de compte bancaire."
+    account: "§6Vous avez actuellement §a%COINS% Coins"
+    account_other: "§6Le joueur %PLAYER% a actuellement §a%COINS% Coins"
+    withdraw: "§6Le joueur %PLAYER% a bien perdu %AMOUNT% coins. Il en a maintenant %COINS%"
+    credit: "§sLe joueur %PLAYER% a bien reçu %AMOUNT% coins. Il en a maintenant %COINS%"
+    credit_player_message: "Cadeau du staff :p" # Message displayed to the player receiving coins as the gain reason
+  lag:
+    lag: "§eLatence (ping) : §a%PING% ms"
+    server: "§eServeur : §a%SERVER%"
+    tps_line: "§eTicks par seconde (20 = Parfait)"
+    head: "§e------[ Informations de Lag ]------"
+    tps: "§6TPS des dernières 1m, 5m, 15m: "
+  playerdata:
+    updated: "§eDonnées modifiées."
+    removed: "§eDonnées supprimées."
+  refresh:
+    cache_refreshed: "§aLes permissions locales ont été raffraichies !"
+  stars:
+    account: "§6Vous avez actuellement §a%STARS% Etoiles"
+    account_other: "§6Le joueur %PLAYER% a actuellement §a%STARS% Etoiles"
+    withdraw: "§6Le joueur %PLAYER% a bien perdu %AMOUNT% Etoiles. Il en a maintenant %STARS%"
+    credit: "§sLe joueur %PLAYER% a bien reçu %AMOUNT% Etoiles. Il en a maintenant %STARS%"
+    credit_player_message: "Cadeau du staff :p" # Message displayed to the player receiving stars as the gain reason

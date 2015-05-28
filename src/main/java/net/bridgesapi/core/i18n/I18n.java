@@ -4,7 +4,9 @@ import net.bridgesapi.core.APIPlugin;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 
 public class I18n {
@@ -39,4 +41,12 @@ public class I18n {
             }
         return lang.getString(key, key);
     }
+
+	public static String getError(String errorCode) {
+		return getTranslation("errors." + errorCode);
+	}
+
+	public static String getCommandMessage(String command, String message) {
+		return getTranslation("commands." + command + "." + message);
+	}
 }

@@ -3,6 +3,7 @@ package net.bridgesapi.core.commands;
 import net.bridgesapi.api.BukkitBridge;
 import net.bridgesapi.api.player.PlayerData;
 import net.bridgesapi.core.APIPlugin;
+import net.bridgesapi.core.i18n.I18n;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
@@ -30,7 +31,7 @@ public class CommandPlayerdata extends AbstractCommand {
 			return true;
 
 		if (arguments.length == 0) {
-			sender.sendMessage(ChatColor.RED + "Usage : /playerdata <pseudo>");
+			sender.sendMessage(ChatColor.RED + "Usage : /playerdata <name>");
 			return true;
 		}
 
@@ -46,7 +47,7 @@ public class CommandPlayerdata extends AbstractCommand {
 				UUID playerId = BukkitBridge.get().getUUIDTranslator().getUUID(playerName, true);
 				PlayerData data = BukkitBridge.get().getPlayerManager().getPlayerData(playerId);
 				data.set(key, value);
-				sender.sendMessage(ChatColor.YELLOW + "Données modifiées.");
+				sender.sendMessage(I18n.getCommandMessage("playerdata", "updated"));
 			}, "CommandPlayerDataSet").start();
 			return true;
 		}
@@ -62,7 +63,7 @@ public class CommandPlayerdata extends AbstractCommand {
 				UUID playerId = BukkitBridge.get().getUUIDTranslator().getUUID(playerName, true);
 				PlayerData data = BukkitBridge.get().getPlayerManager().getPlayerData(playerId);
 				data.remove(key);
-				sender.sendMessage(ChatColor.YELLOW + "Données supprimées.");
+				sender.sendMessage(I18n.getCommandMessage("playerdata", "removed"));
 			}, "CommandPlayerDataSet").start();
 			return true;
 		}
@@ -71,7 +72,7 @@ public class CommandPlayerdata extends AbstractCommand {
 			new Thread(() -> {
 				UUID playerId = BukkitBridge.get().getUUIDTranslator().getUUID(playerName, true);
 				PlayerData data = BukkitBridge.get().getPlayerManager().getPlayerData(playerId);
-				sender.sendMessage(ChatColor.YELLOW + "Data pour " + ChatColor.GREEN + playerName + ChatColor.YELLOW + " / " + ChatColor.AQUA + playerId);
+				sender.sendMessage(ChatColor.YELLOW + "Data for " + ChatColor.GREEN + playerName + ChatColor.YELLOW + " / " + ChatColor.AQUA + playerId);
 				for (Map.Entry<String, String> entry : data.getValues().entrySet()) {
 					sender.sendMessage(ChatColor.YELLOW + " - " + entry.getKey() + " : " + entry.getValue());
 				}

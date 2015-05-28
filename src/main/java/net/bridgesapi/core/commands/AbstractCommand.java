@@ -1,6 +1,7 @@
 package net.bridgesapi.core.commands;
 
 import net.bridgesapi.core.APIPlugin;
+import net.bridgesapi.core.i18n.I18n;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -42,7 +43,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 		}
 
 		if (!val)
-			sender.sendMessage(ChatColor.RED + "Vous n'avez pas le droit de faire ça.");
+			sender.sendMessage(ChatColor.RED + I18n.getError("no_permission"));
 
 		return val;
 	}

@@ -1,7 +1,5 @@
 package net.bridgesapi.api.player;
 
-import net.bridgesapi.api.BukkitBridge;
-
 import java.util.*;
 
 /**
@@ -19,35 +17,6 @@ public abstract class PlayerData {
 
 	protected PlayerData(UUID playerID) {
 		this.playerID = playerID;
-	}
-
-	/**
-	 * Obtient le nom effectif du joueur (/nick)
-	 * @return Le nom effectif du joueur ou null si le joueur n'a pas de nom custom.
-	 */
-	public String getCustomName() {
-		return get("effectiveName");
-	}
-
-	/**
-	 * Obtient le nom effectif du joueur (/nick)
-	 * @return Le pseudo du joueur ou, le cas échéant, son nom modifié.
-	 */
-	public String getEffectiveName() {
-		String eName = getCustomName();
-		return (eName == null) ? BukkitBridge.get().getUUIDTranslator().getName(playerID) : eName;
-	}
-
-	/**
-	 * Obtient l'uuid effectif du joueur (/nick)
-	 * @return L'uuid effectif du joueur
-	 */
-	public UUID getEffectiveUUID() {
-		try {
-			return UUID.fromString(get("effectiveUUID", playerID.toString()));
-		} catch (Exception e) {
-			return null;
-		}
 	}
 
 	/**
