@@ -2,8 +2,13 @@ package net.bridgesapi.utils;
 
 import org.bukkit.Location;
 
+/**
+ * @author created by ThisIsMac on 26/05/2015.
+ */
+
 public class Area
 {
+
     private final Location min = null;
     private final Location max= null;
 

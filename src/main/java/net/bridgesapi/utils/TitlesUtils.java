@@ -11,8 +11,9 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
 
+
 /**
- * Created by Mac' on 26/05/2015.
+ * @author created by ThisIsMac on 26/05/2015.
  */
 public class TitlesUtils {
 

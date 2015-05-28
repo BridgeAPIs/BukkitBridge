@@ -6,8 +6,9 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
+
 /**
- * Created by Mac' on 23/05/2015.
+ * @author created by ThisIsMac on 26/05/2015.
  */
 public class SoundUtils {
 

@@ -2,6 +2,10 @@ package net.bridgesapi.utils;
 
 import org.bukkit.Location;
 
+
+/**
+ * @author created by ThisIsMac on 26/05/2015.
+ */
 public class Selection
 {
     private Location firstPoint;

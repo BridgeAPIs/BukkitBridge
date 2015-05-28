@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 /**
- * Created by Mac' on 26/05/2015.
+ * @author created by ThisIsMac on 26/05/2015.
  */
 public class ConfigUtils {
 
