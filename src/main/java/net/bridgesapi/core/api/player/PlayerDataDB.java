@@ -1,5 +1,6 @@
 package net.bridgesapi.core.api.player;
 
+import net.bridgesapi.core.APIPlugin;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.bridgesapi.api.BukkitBridge;
 import net.bridgesapi.api.player.FinancialCallback;
@@ -43,7 +44,7 @@ public class PlayerDataDB extends PlayerData {
 
 	protected void refreshIfNeeded() {
 		if ((lastRefresh.getTime() + (1000 * 60 * 5)) < System.currentTimeMillis()) {
-			updateData();
+			APIPlugin.getInstance().getExecutor().addTask(this::updateData);
 		}
 	}
 
