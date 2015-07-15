@@ -7,13 +7,19 @@ tab-colors: true
 # BungeeCord server name
 bungeename:
 
-# Only sentinel databases for the moment
-# Porting to single redis will be done one day...
 database:
   sentinels: [] # Sentinels IP:PORT
-  auth: "" # Authentification
-  mastername: ""
-  cachemastername: ""
+  auth: "" # Authentification key (same for both databases)
+  mastername: "" # A database which will be used to store permanent data
+  cachemastername: "" # A database which will be used to store temporary data. you can use the same as master name (not tested, shall work)
+
+# If you prefear to use a classic Redis network, uncomment the following lines.
+
+#singleredis:
+#  auth: "" #Authentication
+#  masterhost: "" # IP:PORT of the master
+#  cachehost: "" # IP:PORT of the cache db
+
 
 # Checks the incoming connexion IPs and refuse them if they don't come from a proxy
 # Disable if you wish to use without any proxy server

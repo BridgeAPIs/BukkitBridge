@@ -3,6 +3,9 @@ package net.bridgesapi.core;
 import net.bridgesapi.api.BukkitBridge;
 import net.bridgesapi.core.commands.CommandRefresh;
 import net.bridgesapi.core.database.DatabaseConnector;
+import net.bridgesapi.core.database.FakeDatabaseConnector;
+import net.bridgesapi.core.database.JedisDatabaseConnector;
+import net.bridgesapi.core.database.SentinelDatabaseConnector;
 import net.bridgesapi.core.listeners.*;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -33,10 +36,10 @@ import java.util.logging.Level;
 public class APIPlugin extends JavaPlugin implements Listener {
 
 	protected static ApiImplementation api;
-	protected static APIPlugin instance;
-	protected DatabaseConnector databaseConnector;
-	protected String serverName;
-	protected FileConfiguration configuration;
+	protected static APIPlugin         instance;
+	protected        DatabaseConnector databaseConnector;
+	protected        String            serverName;
+	protected        FileConfiguration configuration;
 	protected CopyOnWriteArraySet<String> ipWhitelist = new CopyOnWriteArraySet<>();
 	protected boolean databaseEnabled;
 	protected boolean allowJoin;
@@ -78,10 +81,25 @@ public class APIPlugin extends JavaPlugin implements Listener {
 		if (databaseEnabled) {
 			ConfigurationSection section = configuration.getConfigurationSection("database");
 			if (section == null) {
-				log(Level.SEVERE, "Cannot find database configuration. Disabling database mode.");
-				log(Level.WARNING, "Database is disabled for this session. API will work perfectly, but some plugins might have issues during run.");
-				databaseEnabled = false;
-				databaseConnector = new DatabaseConnector(this);
+				section = configuration.getConfigurationSection("singleredis");
+				if (section == null) {
+					log(Level.SEVERE, "Cannot find database configuration. Disabling database mode.");
+					log(Level.WARNING, "Database is disabled for this session. API will work perfectly, but some plugins might have issues during run.");
+					databaseEnabled = false;
+					databaseConnector = new FakeDatabaseConnector();
+				} else {
+					/**
+					 * #singleredis:
+					 #  auth: "" #Authentication
+					 #  masterhost: "" # IP:PORT of the master
+					 #  cachehost: "" # IP:PORT of the cache db
+					 */
+					String master = section.getString("masterhost");
+					String cache = section.getString("cachehost");
+					String auth = section.getString("auth");
+
+					databaseConnector = new JedisDatabaseConnector(this, master, cache, auth);
+				}
 			} else {
 				List<String> ips = section.getStringList("sentinels");
 				HashSet<String> ipsSet = new HashSet<>();
@@ -89,12 +107,12 @@ public class APIPlugin extends JavaPlugin implements Listener {
 				String password = section.getString("auth");
 				String master = section.getString("mastername");
 				String cacheMaster = section.getString("cachemastername");
-				databaseConnector = new DatabaseConnector(this, ipsSet, master, cacheMaster,  password);
+				databaseConnector = new SentinelDatabaseConnector(this, ipsSet, master, cacheMaster,  password);
 
 			}
 		} else {
 			log(Level.WARNING, "Database is disabled for this session. API will work perfectly, but some plugins might have issues during run.");
-			databaseConnector = new DatabaseConnector(this);
+			databaseConnector = new FakeDatabaseConnector();
 		}
 
 		api = new ApiImplementation(this, databaseEnabled);

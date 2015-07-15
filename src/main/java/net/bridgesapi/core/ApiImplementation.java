@@ -32,6 +32,7 @@ import net.bridgesapi.core.api.shops.ShopsManagerNoDB;
 import net.bridgesapi.core.api.stats.StatsManagerDB;
 import net.bridgesapi.core.api.stats.StatsManagerNoDB;
 import net.bridgesapi.core.database.DatabaseConnector;
+import net.bridgesapi.core.database.SentinelDatabaseConnector;
 import net.bridgesapi.core.listeners.GlobalChannelHandler;
 import org.bukkit.Bukkit;
 import redis.clients.jedis.Jedis;

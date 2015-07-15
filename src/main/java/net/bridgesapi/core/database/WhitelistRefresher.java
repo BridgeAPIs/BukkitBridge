@@ -16,11 +16,11 @@ import java.util.Set;
  */
 public class WhitelistRefresher implements Runnable {
 
-	protected APIPlugin plugin;
-	protected DatabaseConnector databaseConnector;
-	protected HostAndPort lastMaster;
+	protected APIPlugin                 plugin;
+	protected SentinelDatabaseConnector databaseConnector;
+	protected HostAndPort               lastMaster;
 
-	protected WhitelistRefresher(APIPlugin plugin, DatabaseConnector connector) {
+	protected WhitelistRefresher(APIPlugin plugin, SentinelDatabaseConnector connector) {
 		this.plugin = plugin;
 		this.databaseConnector = connector;
 	}
