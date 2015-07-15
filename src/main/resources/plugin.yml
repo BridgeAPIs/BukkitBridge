@@ -14,7 +14,10 @@ commands:
      usage: /lag
    playerdata:
      description: Renvoie les playerdata d'un joueur
-     usate: /playerdata <pseudo>
+     usage: /playerdata <pseudo>
    bukkitdebug:
-     description: Renvoie les playerdata d'un joueur
-     usate: /playerdata <pseudo>
+     description: Affiche les informations PubSub reçues par le serveur
+   localrefresh:
+     description: Réactualise les permissions locales
+     usate: /localrefresh
+     permission: permissions.bukkit.refresh

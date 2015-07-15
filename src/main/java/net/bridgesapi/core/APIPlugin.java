@@ -125,7 +125,7 @@ public class APIPlugin extends JavaPlugin implements Listener {
 				getCommand(command).setExecutor((CommandExecutor) ctor.newInstance(this));
 				log("Loaded command " + command + " successfully. ");
 			} catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
-				e.printStackTrace();
+				Bukkit.getLogger().warning("Command " + command + " not loaded." + e.getMessage());
 			}
 		}
 

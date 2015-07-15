@@ -2,6 +2,7 @@ package net.bridgesapi.api;
 
 import net.bridgesapi.api.channels.PubSubAPI;
 import net.bridgesapi.api.names.UUIDTranslator;
+import net.bridgesapi.api.network.JoinManager;
 import net.bridgesapi.api.network.ProxyDataManager;
 import net.bridgesapi.api.parties.PartiesManager;
 import net.bridgesapi.api.permissions.PermissionsManager;
@@ -59,5 +60,7 @@ public abstract class BukkitBridge {
 	public abstract PartiesManager getPartiesManager();
 
 	public abstract PermissionsManager getPermissionsManager();
+
+	public abstract JoinManager getJoinManager();
 
 }

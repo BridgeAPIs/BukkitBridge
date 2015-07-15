@@ -61,8 +61,13 @@ public class DatabaseConnector {
 		config.setMaxTotal(1024);
 		config.setMaxWaitMillis(5000);
 
-		this.mainPool = new JedisSentinelPool(masterName, sentinels, config, 5000, password);
-		this.cachePool = new JedisSentinelPool(cacheName, sentinels, config, 5000, password);
+		if (password.length() == 0) {
+			this.mainPool = new JedisSentinelPool(masterName, sentinels, config, 5000);
+			this.cachePool = new JedisSentinelPool(cacheName, sentinels, config, 5000);
+		} else {
+			this.mainPool = new JedisSentinelPool(masterName, sentinels, config, 5000, password);
+			this.cachePool = new JedisSentinelPool(cacheName, sentinels, config, 5000, password);
+		}
 
 		// Init du thread
 
