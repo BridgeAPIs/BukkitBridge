@@ -115,20 +115,6 @@ public class JoinManagerImplement implements JoinManager, Listener {
     }
 
     public JoinResponse requestJoin(UUID player, boolean alreadyConnected) {
-        UUID party = BukkitBridge.get().getPartiesManager().getPlayerParty(player);
-        if (party != null && isPartyLimited()) {
-            if (! BukkitBridge.get().getPartiesManager().getLeader(party).equals(player)) {
-                JoinResponse response = new JoinResponse();
-                response.disallow("Seul le chef de partie peur rejoindre un jeu.");
-                return response;
-            } else {
-                HashSet<UUID> dontMove = new HashSet<>();
-                if (alreadyConnected)
-                    dontMove.add(player);
-                return requestPartyJoin(party, dontMove);
-            }
-        }
-
         return requestSoloJoin(player);
     }
 

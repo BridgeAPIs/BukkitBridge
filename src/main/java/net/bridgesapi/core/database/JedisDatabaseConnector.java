@@ -67,10 +67,10 @@ public class JedisDatabaseConnector implements DatabaseConnector {
 
 		if (password.length() == 0) {
 			this.mainPool = new JedisPool(config, mainIp.getHost(), mainIp.getPort(), 5000);
-			this.mainPool = new JedisPool(config, cacheIp.getHost(), cacheIp.getPort(), 5000);
+			this.cachePool = new JedisPool(config, cacheIp.getHost(), cacheIp.getPort(), 5000);
 		} else {
 			this.mainPool = new JedisPool(config, mainIp.getHost(), mainIp.getPort(), 5000, password);
-			this.mainPool = new JedisPool(config, cacheIp.getHost(), cacheIp.getPort(), 5000, password);
+			this.cachePool = new JedisPool(config, cacheIp.getHost(), cacheIp.getPort(), 5000, password);
 		}
 
 		// Init du thread

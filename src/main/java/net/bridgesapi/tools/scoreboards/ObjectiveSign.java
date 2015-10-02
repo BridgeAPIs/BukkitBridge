@@ -25,11 +25,6 @@ public class ObjectiveSign extends VObjective{
 
     public void setLine(int nb, String line)
     {
-        if(nb < 0 || nb >=19)
-        {
-            Bukkit.getLogger().warning("Scoreboard line :" + nb + " - [0;18]");
-        }
-
         VScore remove = getScore(lines.get(nb));
         scores.remove(remove);
         VScore add = getScore(line);
