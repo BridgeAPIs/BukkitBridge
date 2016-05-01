@@ -1,7 +1,7 @@
 package net.bridgesapi.tools.scoreboards;
 
-import net.minecraft.server.v1_8_R2.*;
-import net.minecraft.server.v1_8_R2.IScoreboardCriteria.EnumScoreboardHealthDisplay;
+import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_8_R3.IScoreboardCriteria.EnumScoreboardHealthDisplay;
 import net.bridgesapi.tools.Reflection;
 import net.bridgesapi.tools.ReflectionUtilities;
 import org.bukkit.OfflinePlayer;

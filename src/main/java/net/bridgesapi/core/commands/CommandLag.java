@@ -2,10 +2,10 @@ package net.bridgesapi.core.commands;
 
 import net.bridgesapi.core.i18n.I18n;
 import net.md_5.bungee.api.ChatColor;
-import net.minecraft.server.v1_8_R2.MinecraftServer;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
 import net.bridgesapi.core.APIPlugin;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 /**
