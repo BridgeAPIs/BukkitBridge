@@ -1,7 +1,7 @@
 package net.bridgesapi.core.api.resourcepacks;
 
 import io.netty.channel.Channel;
-import net.minecraft.server.v1_8_R2.PacketPlayInResourcePackStatus;
+import net.minecraft.server.v1_9_R1.PacketPlayInResourcePackStatus;
 import net.bridgesapi.tools.TinyProtocol;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;

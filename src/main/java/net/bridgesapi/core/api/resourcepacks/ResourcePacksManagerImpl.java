@@ -1,14 +1,14 @@
 package net.bridgesapi.core.api.resourcepacks;
 
-import net.minecraft.server.v1_8_R2.PacketPlayInResourcePackStatus;
-import net.minecraft.server.v1_8_R2.PacketPlayOutResourcePackSend;
+import net.minecraft.server.v1_9_R1.PacketPlayInResourcePackStatus;
+import net.minecraft.server.v1_9_R1.PacketPlayOutResourcePackSend;
 import net.bridgesapi.api.BukkitBridge;
 import net.bridgesapi.api.resourcepacks.ResourceCallback;
 import net.bridgesapi.api.resourcepacks.ResourcePacksManager;
 import net.bridgesapi.core.APIPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

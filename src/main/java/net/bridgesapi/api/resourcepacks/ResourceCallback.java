@@ -1,6 +1,6 @@
 package net.bridgesapi.api.resourcepacks;
 
-import net.minecraft.server.v1_8_R2.PacketPlayInResourcePackStatus;
+import net.minecraft.server.v1_9_R1.PacketPlayInResourcePackStatus;
 import org.bukkit.entity.Player;
 
 /**

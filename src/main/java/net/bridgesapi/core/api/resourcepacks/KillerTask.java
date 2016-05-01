@@ -1,6 +1,6 @@
 package net.bridgesapi.core.api.resourcepacks;
 
-import net.minecraft.server.v1_8_R2.PacketPlayInResourcePackStatus;
+import net.minecraft.server.v1_9_R1.PacketPlayInResourcePackStatus;
 import net.bridgesapi.api.resourcepacks.ResourceCallback;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

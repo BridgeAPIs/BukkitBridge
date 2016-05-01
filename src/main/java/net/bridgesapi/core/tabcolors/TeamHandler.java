@@ -1,7 +1,7 @@
 package net.bridgesapi.core.tabcolors;
 
-import net.minecraft.server.v1_8_R2.PacketPlayOutScoreboardTeam;
-import net.minecraft.server.v1_8_R2.ScoreboardTeamBase;
+import net.minecraft.server.v1_9_R1.PacketPlayOutScoreboardTeam;
+import net.minecraft.server.v1_9_R1.ScoreboardTeamBase;
 import net.bridgesapi.tools.Reflection;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
