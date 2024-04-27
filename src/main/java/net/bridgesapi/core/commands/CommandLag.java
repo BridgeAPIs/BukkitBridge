@@ -1,12 +1,16 @@
 package net.bridgesapi.core.commands;
 
 import net.bridgesapi.core.i18n.I18n;
-import net.md_5.bungee.api.ChatColor;
-import net.minecraft.server.v1_8_R2.MinecraftServer;
 import net.bridgesapi.core.APIPlugin;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * This file is a part of the SamaGames project
@@ -23,31 +27,26 @@ public class CommandLag extends AbstractCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, String label, String[] arguments) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(ChatColor.RED + "This command can only be used by players.");
+			sender.sendMessage(Component.text("This command can only be used by players.", NamedTextColor.RED));
 			return true;
 		}
 
 		Player player = (Player) sender;
-		int latency = ((CraftPlayer) player).getHandle().ping;
+		int latency = ((Player) sender).getPing();
 
 		StringBuilder tps = new StringBuilder(I18n.getCommandMessage("lag", "tps"));
-		double[] tab;
-		int length = (tab = MinecraftServer.getServer().recentTps).length;
-
-		for(int var7 = 0; var7 < length; ++var7) {
-			tps.append(this.format(tab[var7]));
-			if (var7 + 1 < length)
-				tps.append(", ");
-		}
+		tps.append(Arrays.stream(Bukkit.getServer().getTPS())
+				.mapToObj(this::format)
+				.collect(Collectors.joining(", ")));
 
 		String server = APIPlugin.getInstance().getServerName();
 
 		player.sendMessage(I18n.getCommandMessage("lag", "head"));
-		player.sendMessage(ChatColor.GOLD + " ");
+		player.sendMessage(NamedTextColor.GOLD + " ");
 		player.sendMessage(I18n.getCommandMessage("lag", "server").replace("%SERVER%", server));
-		player.sendMessage(ChatColor.GOLD + " ");
+		player.sendMessage(NamedTextColor.GOLD + " ");
 		player.sendMessage(I18n.getCommandMessage("lag", "lag").replace("%PING%", formatLag(latency)));
-		player.sendMessage(ChatColor.GOLD + " ");
+		player.sendMessage(NamedTextColor.GOLD + " ");
 		player.sendMessage(I18n.getCommandMessage("lag", "tps_line"));
 		player.sendMessage(tps.toString());
 

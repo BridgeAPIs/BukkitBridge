@@ -8,7 +8,6 @@ import net.bridgesapi.api.network.ProxyDataManager;
 import net.bridgesapi.api.parties.PartiesManager;
 import net.bridgesapi.api.permissions.PermissionsManager;
 import net.bridgesapi.api.player.PlayerDataManager;
-import net.bridgesapi.api.resourcepacks.ResourcePacksManager;
 import net.bridgesapi.api.settings.SettingsManager;
 import net.bridgesapi.api.shops.ShopsManager;
 import net.bridgesapi.api.stats.StatsManager;
@@ -24,7 +23,6 @@ import net.bridgesapi.core.api.player.PlayerDataManagerNoDB;
 import net.bridgesapi.core.api.player.PlayerDataManagerWithDB;
 import net.bridgesapi.core.api.pubsub.PubSubAPIDB;
 import net.bridgesapi.core.api.pubsub.PubSubNoDB;
-import net.bridgesapi.core.api.resourcepacks.ResourcePacksManagerImpl;
 import net.bridgesapi.core.api.settings.SettingsManagerDB;
 import net.bridgesapi.core.api.settings.SettingsManagerNoDB;
 import net.bridgesapi.core.api.shops.ShopsManagerDB;
@@ -56,7 +54,6 @@ public class ApiImplementation extends BukkitBridge
 	protected JoinManager joinManager;
 	protected ProxyDataManager proxyDataManager;
 	protected PartiesManager partiesManager;
-	protected ResourcePacksManager resourcePacksManager;
 	protected BasicPermissionManager permissionsManager;
 
 	public ApiImplementation(APIPlugin plugin, boolean database) {
@@ -66,7 +63,6 @@ public class ApiImplementation extends BukkitBridge
 		JoinManagerImplement implement = new JoinManagerImplement();
 		Bukkit.getServer().getPluginManager().registerEvents(implement, plugin);
 		this.joinManager = implement;
-		resourcePacksManager = new ResourcePacksManagerImpl();
 
 		if (database) {
 			settingsManager = new SettingsManagerDB(this);
@@ -106,12 +102,6 @@ public class ApiImplementation extends BukkitBridge
 	public PermissionsManager getPermissionsManager() {
 		return permissionsManager;
 	}
-
-	@Override
-	public ResourcePacksManager getResourcePacksManager() {
-		return resourcePacksManager;
-	}
-
 
 	public APIPlugin getPlugin() {
 		return plugin;

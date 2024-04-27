@@ -7,7 +7,6 @@ import net.bridgesapi.api.network.ProxyDataManager;
 import net.bridgesapi.api.parties.PartiesManager;
 import net.bridgesapi.api.permissions.PermissionsManager;
 import net.bridgesapi.api.player.PlayerDataManager;
-import net.bridgesapi.api.resourcepacks.ResourcePacksManager;
 import net.bridgesapi.api.settings.SettingsManager;
 import net.bridgesapi.api.shops.ShopsManager;
 import net.bridgesapi.api.stats.StatsManager;
@@ -54,7 +53,6 @@ public abstract class BukkitBridge {
 	public abstract PlayerDataManager getPlayerManager();
 	public abstract PubSubAPI getPubSub();
 	public abstract UUIDTranslator getUUIDTranslator();
-	public abstract ResourcePacksManager getResourcePacksManager();
 
 	public abstract ProxyDataManager getProxyDataManager();
 	public abstract PartiesManager getPartiesManager();

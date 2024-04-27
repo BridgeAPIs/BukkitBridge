@@ -3,7 +3,7 @@ package net.bridgesapi.core.api.network;
 import net.bridgesapi.api.BukkitBridge;
 import net.bridgesapi.api.channels.PacketsReceiver;
 import net.bridgesapi.api.network.JoinHandler;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

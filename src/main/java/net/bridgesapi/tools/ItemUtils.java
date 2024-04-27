@@ -20,7 +20,7 @@ public class ItemUtils
 
     public static ItemStack getPlayerHead(String player)
     {
-        ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
+        ItemStack head = new ItemStack(Material.SKELETON_SKULL, 1, (short) SkullType.PLAYER.ordinal());
         SkullMeta meta = (SkullMeta) head.getItemMeta();
         meta.setOwner(player);
         head.setItemMeta(meta);

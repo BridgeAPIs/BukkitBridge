@@ -6,11 +6,11 @@ import net.bridgesapi.core.APIPlugin;
 import net.bridgesapi.core.i18n.I18n;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.libs.joptsimple.internal.Strings;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * This file is a part of the SamaGames project
@@ -41,7 +41,7 @@ public class CommandPlayerdata extends AbstractCommand {
 
 			final String playerName = arguments[1];
 			final String key = arguments[2];
-			final String value = Strings.join(Arrays.copyOfRange(arguments, 3, arguments.length), " ");
+			final String value = String.join(" ", Arrays.copyOfRange(arguments, 3, arguments.length));
 
 			new Thread(() -> {
 				UUID playerId = BukkitBridge.get().getUUIDTranslator().getUUID(playerName, true);

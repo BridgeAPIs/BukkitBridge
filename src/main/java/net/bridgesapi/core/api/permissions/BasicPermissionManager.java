@@ -4,7 +4,6 @@ import net.bridgesapi.api.BukkitBridge;
 import net.bridgesapi.api.permissions.PermissionsManager;
 import net.bridgesapi.core.APIPlugin;
 import net.zyuiop.crosspermissions.api.PermissionsAPI;
-import net.zyuiop.crosspermissions.api.database.Database;
 import net.zyuiop.crosspermissions.api.rawtypes.RawPlayer;
 import net.zyuiop.crosspermissions.api.rawtypes.RawPlugin;
 import org.bukkit.Bukkit;
@@ -12,10 +11,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
-import redis.clients.jedis.Jedis;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.logging.Level;
 
@@ -35,12 +34,7 @@ public abstract class BasicPermissionManager implements RawPlugin, PermissionsMa
 		Bukkit.getLogger().info("Lobby mode was set to : " + isLobby);
 
 		logInfo(">> LOADING PERMISSIONS API !");
-		api = new PermissionsAPI(this, "Joueur", new Database() {
-			@Override
-			public Jedis getJedis() {
-				return BukkitBridge.get().getResource();
-			}
-		});
+		api = new PermissionsAPI(this, "Joueur", () -> BukkitBridge.get().getResource());
 		api.getManager().refreshGroups();
 		logInfo(">> LOADED PERMISSIONS API !");
 
@@ -48,7 +42,7 @@ public abstract class BasicPermissionManager implements RawPlugin, PermissionsMa
 	}
 
 	public void disable() {
-		tasks.stream().filter(task -> task != null).forEach(org.bukkit.scheduler.BukkitTask::cancel);
+		tasks.stream().filter(Objects::nonNull).forEach(org.bukkit.scheduler.BukkitTask::cancel);
 		logInfo("Cancelled tasks successfully.");
 	}
 

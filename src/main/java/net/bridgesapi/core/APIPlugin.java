@@ -7,7 +7,7 @@ import net.bridgesapi.core.database.FakeDatabaseConnector;
 import net.bridgesapi.core.database.JedisDatabaseConnector;
 import net.bridgesapi.core.database.SentinelDatabaseConnector;
 import net.bridgesapi.core.listeners.*;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
@@ -127,10 +127,9 @@ public class APIPlugin extends JavaPlugin implements Listener {
 
 		Bukkit.getPluginManager().registerEvents(new PlayerDataListener(this), this);
 		Bukkit.getPluginManager().registerEvents(new ChatFormatter(this), this);
+
 		if (configuration.getBoolean("disable-nature", false))
 			Bukkit.getPluginManager().registerEvents(new NaturalListener(), this);
-		if (configuration.getBoolean("tab-colors", true))
-			Bukkit.getPluginManager().registerEvents(new TabsColorsListener(this), this);
 
 		/*
 		Loading commands
