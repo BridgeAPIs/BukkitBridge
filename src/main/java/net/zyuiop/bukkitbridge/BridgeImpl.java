@@ -17,7 +17,7 @@ class BridgeImpl implements BridgeConnector {
   private final BukkitBridge plugin;
   private final JedisPlayerInfoCache playerCache;
   private final JedisPubSubConnection pubSub;
-  private ServerManager serverManager;
+  private ServerManagerImpl serverManager;
 
   BridgeImpl(BukkitBridge plugin) {
     var config = ConfigUtils.parseJedisConfig(plugin.getConfig().getConfigurationSection("redis"));
@@ -34,10 +34,9 @@ class BridgeImpl implements BridgeConnector {
     this.pubSub = new JedisPubSubConnection(context, config);
   }
 
-  void asGameServer(String game, String variant) {
-    this.serverManager = new GameServerManagerImpl(
-        this, context, plugin.getServer().getIp(), plugin.getServer().getPort(), game, variant
-    );
+  @Override
+  public void initGameServer(String game, String variant) {
+    this.serverManager = (GameServerManagerImpl) this.serverManager.asGameServer(game, variant);
   }
 
   @Override
@@ -54,4 +53,5 @@ class BridgeImpl implements BridgeConnector {
   public ServerManager currentServer() {
     return this.serverManager;
   }
+
 }

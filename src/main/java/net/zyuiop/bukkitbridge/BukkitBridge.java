@@ -1,5 +1,7 @@
 package net.zyuiop.bukkitbridge;
 
+import net.zyuiop.bridgeconnector.api.BridgeConnector;
+import net.zyuiop.bukkitbridge.listeners.PlayerListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -23,10 +25,14 @@ public class BukkitBridge extends JavaPlugin {
 
     this.connector = new BridgeImpl(this);
 
-
   }
 
-  public void declareGameServer(String game, String variant) {
-    this.connector.asGameServer(game, variant);
+  public BridgeConnector connector() {
+    return this.connector;
+  }
+
+  @Override
+  public void onEnable() {
+    this.getServer().getPluginManager().registerEvents(new PlayerListener(this.connector), this);
   }
 }
