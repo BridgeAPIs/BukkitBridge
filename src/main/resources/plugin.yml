@@ -1,23 +1,4 @@
 name: BukkitBridge
-main: net.bridgesapi.core.APIPlugin
-version: 1.0.1a
-authors: [zyuiop, ThisIsMac]
-commands:
-   coins:
-     description: Commandes relatives aux coins
-     usage: /coins [get <joueur> |credit <joueur> <montant>|withdraw <joueur> <montant>]
-   stars:
-     description: Commandes relatives aux étoiles
-     usage: /stars [get <joueur> |credit <joueur> <montant>|withdraw <joueur> <montant>]
-   lag:
-     description: Donne des informations sur le serveur actuel et sur les latences
-     usage: /lag
-   playerdata:
-     description: Renvoie les playerdata d'un joueur
-     usage: /playerdata <pseudo>
-   bukkitdebug:
-     description: Affiche les informations PubSub reçues par le serveur
-   localrefresh:
-     description: Réactualise les permissions locales
-     usate: /localrefresh
-     permission: permissions.bukkit.refresh
+main: net.zyuiop.bukkitbridge.BukkitBridge
+version: 2.0.0
+authors: [zyuiop]
