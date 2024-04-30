@@ -6,6 +6,7 @@ import net.zyuiop.bridgeconnector.api.Context;
 import net.zyuiop.bridgeconnector.api.Context.ServerType;
 import net.zyuiop.bridgeconnector.api.ServerManager;
 import net.zyuiop.bridgeconnector.api.cache.PlayerInfoCache;
+import net.zyuiop.bridgeconnector.api.cache.PlayerUUIDCache;
 import net.zyuiop.bridgeconnector.api.data.ServerKind;
 import net.zyuiop.bridgeconnector.api.pubsub.PubSubConnection;
 import net.zyuiop.bridgeconnector.impl.GameServerManagerImpl;
@@ -58,4 +59,8 @@ class BridgeImpl implements BridgeConnector {
     return this.serverManager;
   }
 
+  @Override
+  public PlayerUUIDCache uuidCache() {
+    return this.playerCache;
+  }
 }
