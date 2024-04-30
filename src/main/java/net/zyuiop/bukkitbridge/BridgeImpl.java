@@ -1,5 +1,6 @@
 package net.zyuiop.bukkitbridge;
 
+import com.google.common.base.Preconditions;
 import net.zyuiop.bridgeconnector.api.BridgeConnector;
 import net.zyuiop.bridgeconnector.api.Context;
 import net.zyuiop.bridgeconnector.api.Context.ServerType;
@@ -20,11 +21,14 @@ class BridgeImpl implements BridgeConnector {
   private ServerManagerImpl serverManager;
 
   BridgeImpl(BukkitBridge plugin) {
+    var serverName = plugin.getConfig().getString("serverName");
+    Preconditions.checkNotNull(serverName);
+
     var config = ConfigUtils.parseJedisConfig(plugin.getConfig().getConfigurationSection("redis"));
 
     this.context = new Context(
         ServerType.SERVER,
-        plugin.getServer().getName(),
+        serverName,
         new SchedulerWrapper(plugin),
         plugin.getSLF4JLogger()
     );

@@ -2,3 +2,4 @@ name: BukkitBridge
 main: net.zyuiop.bukkitbridge.BukkitBridge
 version: 2.0.0
 authors: [zyuiop]
+api-version: 1.20
