@@ -19,6 +19,12 @@ public class RequestJoinHandler {
   public void onRequestJoin(ServerJoinRequest request) {
     var playerName = this.connector.uuidCache().getUsernameFromUUID(request.targetPlayer()).orElse("<unknown_player>");
     var event = new RequestJoinEvent(request.targetPlayer(), playerName);
+
+    if (!connector.currentServer().currentStatus().acceptingPlayers()) {
+      event.setCancelled(true);
+      event.cancelMessage(Component.text("Ce serveur n'est pas encore prêt.", NamedTextColor.RED));
+    }
+
     Bukkit.getPluginManager().callEvent(event);
 
     if (!event.isCancelled()) {

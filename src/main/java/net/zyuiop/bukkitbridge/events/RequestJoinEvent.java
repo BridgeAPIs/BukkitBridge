@@ -15,6 +15,8 @@ public class RequestJoinEvent extends Event implements Cancellable {
   private Component cancelMessage = null;
 
   public RequestJoinEvent(UUID playerJoiningUUID, String playerJoiningName) {
+    super(true);
+
     this.playerJoiningUUID = playerJoiningUUID;
     this.playerJoiningName = playerJoiningName;
   }
