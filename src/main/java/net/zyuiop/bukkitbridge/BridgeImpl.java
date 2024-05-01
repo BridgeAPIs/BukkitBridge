@@ -63,4 +63,9 @@ class BridgeImpl implements BridgeConnector {
   public PlayerUUIDCache uuidCache() {
     return this.playerCache;
   }
+
+  @Override
+  public String serverName() {
+    return context.serverName();
+  }
 }
