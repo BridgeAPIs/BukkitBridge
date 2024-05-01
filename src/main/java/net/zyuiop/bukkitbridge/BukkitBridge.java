@@ -1,7 +1,9 @@
 package net.zyuiop.bukkitbridge;
 
+import java.util.logging.Logger;
 import net.zyuiop.bridgeconnector.api.BridgeConnector;
 import net.zyuiop.bukkitbridge.commands.LobbyCommand;
+import net.zyuiop.bukkitbridge.commands.MessageCommand;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,6 +30,10 @@ public class BukkitBridge extends JavaPlugin {
     return this.connector;
   }
 
+  public static Logger logger() {
+    return instance().getLogger();
+  }
+
   @Override
   public void onEnable() {
     this.connector = new BridgeImpl(this);
@@ -35,5 +41,6 @@ public class BukkitBridge extends JavaPlugin {
 
     // Commands
     new LobbyCommand(this.connector);
+    new MessageCommand(this.connector);
   }
 }
