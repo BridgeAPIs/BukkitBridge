@@ -1,5 +1,7 @@
 package net.zyuiop.bukkitbridge.events;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.zyuiop.bridgeconnector.api.BridgeConnector;
 import net.zyuiop.bridgeconnector.api.pubsub.PubSubPacketHandler;
 import net.zyuiop.bridgeconnector.api.pubsub.packets.players.ServerJoinRequest;
@@ -24,7 +26,14 @@ public class RequestJoinHandler {
       connector.utils().movePlayerToServer(request.targetPlayer(), null);
     } else {
       BukkitBridge.logger().info("[JoinHandler] Player " + playerName + "/" + request.targetPlayer() + " join request was rejected.");
-      // TODO: send a message to the player with the rejection reason?
+      var cancelMessage = event.cancelMessage();
+
+      if (cancelMessage == null) {
+        cancelMessage = Component.text("Le serveur n'a pas accepté votre demande de connexion, merci de réessayer dans quelques instants.",
+            NamedTextColor.RED);
+      }
+
+      connector.utils().sendMessageToPlayer(request.targetPlayer(), cancelMessage);
     }
   }
 }

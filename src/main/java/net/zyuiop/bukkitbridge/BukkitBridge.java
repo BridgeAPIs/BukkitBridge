@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 import net.zyuiop.bridgeconnector.api.BridgeConnector;
 import net.zyuiop.bukkitbridge.commands.LobbyCommand;
 import net.zyuiop.bukkitbridge.commands.MessageCommand;
+import net.zyuiop.bukkitbridge.events.RequestJoinEvent;
+import net.zyuiop.bukkitbridge.events.RequestJoinHandler;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,5 +44,8 @@ public class BukkitBridge extends JavaPlugin {
     // Commands
     new LobbyCommand(this.connector);
     new MessageCommand(this.connector);
+
+    // Net handlers
+    this.connector.pubSub().registerHandlers(new RequestJoinHandler(connector));
   }
 }

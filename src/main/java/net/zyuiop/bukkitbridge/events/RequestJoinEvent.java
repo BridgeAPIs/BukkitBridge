@@ -1,6 +1,7 @@
 package net.zyuiop.bukkitbridge.events;
 
 import java.util.UUID;
+import net.kyori.adventure.text.Component;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -11,6 +12,7 @@ public class RequestJoinEvent extends Event implements Cancellable {
   private final UUID playerJoiningUUID;
   private final String playerJoiningName;
   private boolean canceled = false;
+  private Component cancelMessage = null;
 
   public RequestJoinEvent(UUID playerJoiningUUID, String playerJoiningName) {
     this.playerJoiningUUID = playerJoiningUUID;
@@ -23,6 +25,14 @@ public class RequestJoinEvent extends Event implements Cancellable {
 
   public String playerJoiningName() {
     return playerJoiningName;
+  }
+
+  public Component cancelMessage() {
+    return cancelMessage;
+  }
+
+  public void cancelMessage(Component cancelMessage) {
+    this.cancelMessage = cancelMessage;
   }
 
   @Override
